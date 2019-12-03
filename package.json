@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-plugin-cloze",
+  "name": "@cloze/gatsby-plugin-cloze",
   "description": "Gatsby plugin which scans generated html for fragments and prepares it for the cloze personalization pipeline.",
   "keywords": [
     "gatsby",
     "gatsby-plugin"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Alexander Braunreuther <alex@cloze.it>",
   "bugs": {
     "url": "https://github.com/Cloze/gatsby-plugin-cloze/issues"
