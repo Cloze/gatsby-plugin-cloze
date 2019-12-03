@@ -5,7 +5,7 @@
     "gatsby",
     "gatsby-plugin"
   ],
-  "version": "1.0.2",
+  "version": "1.0.4",
   "author": "Alexander Braunreuther <alex@cloze.it>",
   "bugs": {
     "url": "https://github.com/Cloze/gatsby-plugin-cloze/issues"
@@ -15,8 +15,7 @@
     "url": "https://github.com/Cloze/gatsby-plugin-cloze.git"
   },
   "homepage": "https://github.com/Cloze/gatsby-plugin-cloze#readme",
-  "license": "ISC",
-  "main": "index.js",
+  "license": "UNLICENSED",
   "peerDependencies": {
     "gatsby": "^2.18.x",
     "prop-types": "^15.x",
