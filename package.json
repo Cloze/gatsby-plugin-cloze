@@ -1,0 +1,43 @@
+{
+  "name": "gatsby-plugin-cloze",
+  "description": "Gatsby plugin which scans generated html for fragments and prepares it for the cloze personalization pipeline.",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "version": "1.0.0",
+  "author": "Alexander Braunreuther <alex@cloze.it>",
+  "bugs": {
+    "url": "https://github.com/Cloze/gatsby-plugin-cloze/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cloze/gatsby-plugin-cloze.git"
+  },
+  "homepage": "https://github.com/Cloze/gatsby-plugin-cloze#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "peerDependencies": {
+    "gatsby": "^2.18.x",
+    "react": "^16.x"
+  },
+  "dependencies": {
+    "cheerio": "1.0.0-rc.3",
+    "lodash": "4.17.15"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.7.4",
+    "@babel/core": "7.7.4",
+    "babel-preset-gatsby-package": "0.2.12",
+    "cross-env": "6.0.3",
+    "react": "16.12.0"
+  },
+  "scripts": {
+    "build": "babel src --out-dir .",
+    "prepare": "cross-env NODE_ENV=production npm run build",
+    "watch": "babel -w src --out-dir ."
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
