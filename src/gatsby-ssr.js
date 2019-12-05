@@ -5,6 +5,10 @@ const _ = require('lodash');
 const { PrefetchFragmentLink } = require('./PrefetchFragmentLink');
 
 exports.onRenderBody = ({ setHeadComponents, bodyHtml }) => {
+    if (!bodyHtml) {
+        return;
+    }
+
     const $ = cheerio.load(bodyHtml);
     const fragmentPrefetchUrls = _.uniq(
         $('cloze\\:include')
