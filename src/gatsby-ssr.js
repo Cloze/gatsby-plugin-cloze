@@ -11,9 +11,9 @@ exports.onRenderBody = ({ setHeadComponents, bodyHtml }) => {
 
     const $ = cheerio.load(bodyHtml);
     const fragmentPrefetchUrls = _.uniq(
-        $('cloze\\:include')
+        $('link[rel="cloze:include"]')
             .get()
-            .map(element => $(element).attr('src')),
+            .map(element => $(element).attr('href')),
     );
 
     setHeadComponents(
