@@ -1,26 +1,36 @@
+const path = require('path');
 const React = require('react');
-const cheerio = require('cheerio');
-const _ = require('lodash');
+const Promise = require('bluebird');
+const jsonfile = require('jsonfile');
+const mkdirp = require('mkdirp-promise');
+const {
+  FragmentSheet,
+  FragmentSheetManager,
+} = require('@bit/braunreuther.cloze.react-cfi.cfi-sheet');
 
-const { PrefetchFragmentLink } = require('./PrefetchFragmentLink');
+const sheetByPathname = new Map();
 
-exports.onRenderBody = ({ setHeadComponents, bodyHtml }) => {
-    if (!bodyHtml) {
-        return;
-    }
+// eslint-disable-next-line react/prop-types,react/display-name
+exports.wrapRootElement = ({ element, pathname }) => {
+  const sheet = new FragmentSheet();
+  sheetByPathname.set(pathname, sheet);
+  return <FragmentSheetManager sheet={sheet}>{element}</FragmentSheetManager>;
+};
 
-    const $ = cheerio.load(bodyHtml);
-    const fragmentPrefetchUrls = _.uniq(
-        $('link[rel="cloze:include"]')
-            .get()
-            .map(element => $(element).attr('href')),
+exports.onRenderBody = async ({ setHeadComponents, pathname }) => {
+  const sheet = sheetByPathname.get(pathname);
+  if (sheet) {
+    setHeadComponents(sheet.getPrefetchTags());
+    await mkdirp(path.join(process.cwd(), '/.cloze/props'));
+    await Promise.map(
+      sheet.getProps(),
+      ({ props, hash }) =>
+        jsonfile.writeFile(
+          path.join(process.cwd(), '/.cloze/props', `${hash}.json`),
+          props,
+        ),
+      { concurrency: 10 },
     );
-
-    setHeadComponents(
-        <>
-            {fragmentPrefetchUrls.map(url => (
-                <PrefetchFragmentLink src={url} />
-            ))}
-        </>,
-    );
+    sheetByPathname.delete(pathname);
+  }
 };
