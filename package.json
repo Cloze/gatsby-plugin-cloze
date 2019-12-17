@@ -5,7 +5,7 @@
     "gatsby",
     "gatsby-plugin"
   ],
-  "version": "2.0.1",
+  "version": "2.1.0",
   "author": "Alexander Braunreuther <alex@cloze.it>",
   "bugs": {
     "url": "https://github.com/Cloze/gatsby-plugin-cloze/issues"
