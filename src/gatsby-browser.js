@@ -1,3 +1,3 @@
 exports.onInitialClientRender = () => {
-    document.documentElement.classList.add('cloze_hydrated');
+    document.documentElement.classList.add('cloze_mount');
 };
